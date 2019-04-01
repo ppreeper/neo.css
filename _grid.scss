@@ -1,0 +1,60 @@
+// Grid system
+
+// The grid system of mini.css utilizes the Flexbox layout to provide you with a simple, modern, responsive layout system for your web apps. Like most modern CSS frameworks' grid systems, it is composed of three main components - containers, rows and columns:
+
+// The container (.container) is the outermost layer of the grid system and serves as a fluid wrapper, which can be used as the basis for your layout.
+// Inside the container, you can add one or more rows (.row), which will in turn house the columns.
+// Columns (col-*-*) are placed inside rows and they can be customized to display differently on different screen sizes, make use of fluid layouts, use offsets or change ordering.
+
+.container {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.display {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+
+    &-tl {
+        grid-area: 1/1/span 1/span 1;
+    }
+
+    &-tm {
+        grid-area: 1/2/span 1/span 1;
+    }
+
+    &-tr {
+        grid-area: 1/3/span 1/span 1;
+    }
+
+    &-ml {
+        grid-area: 2/1/span 1/span 1;
+    }
+
+    &-mm {
+        grid-area: 2/2/span 1/span 1;
+    }
+
+    &-mr {
+        grid-area: 2/3/span 1/span 1;
+    }
+
+    &-bl {
+        grid-area: 3/1/span 1/span 1;
+    }
+
+    &-bm {
+        grid-area: 3/2/span 1/span 1;
+    }
+
+    &-br {
+        grid-area: 3/3/span 1/span 1;
+    }
+
+}

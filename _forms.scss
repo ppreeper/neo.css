@@ -1,0 +1,137 @@
+%input__default-styling {
+  height: 38px;
+  padding: 6px 10px;
+  /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  /* Removes awkward default styles on some inputs for iOS */
+}
+
+%input__focus {
+  border: 1px solid #33C3F0;
+  outline: 0;
+}
+
+%input__appearance {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input {
+  [type="email"] {
+    @extend %input__default-styling;
+    @extend %input__appearance;
+
+    &:focus {
+      @extend %input__focus;
+    }
+  }
+
+  [type="number"] {
+    @extend %input__default-styling;
+    @extend %input__appearance;
+
+    &:focus {
+      @extend %input__focus;
+    }
+  }
+
+  [type="search"] {
+    @extend %input__default-styling;
+    @extend %input__appearance;
+
+    &:focus {
+      @extend %input__focus;
+    }
+  }
+
+  [type="text"] {
+    @extend %input__default-styling;
+    @extend %input__appearance;
+
+    &:focus {
+      @extend %input__focus;
+    }
+  }
+
+  [type="tel"] {
+    @extend %input__default-styling;
+    @extend %input__appearance;
+
+    &:focus {
+      @extend %input__focus;
+    }
+  }
+
+  [type="url"] {
+    @extend %input__default-styling;
+    @extend %input__appearance;
+
+    &:focus {
+      @extend %input__focus;
+    }
+  }
+
+  [type="password"] {
+    @extend %input__default-styling;
+    @extend %input__appearance;
+
+    &:focus {
+      @extend %input__focus;
+    }
+  }
+
+  &[type="checkbox"] {
+    display: inline;
+  }
+
+  &[type="radio"] {
+    display: inline;
+  }
+}
+
+textarea {
+  @extend %input__default-styling;
+  @extend %input__appearance;
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+select {
+  @extend %input__default-styling;
+
+  &:focus {
+    @extend %input__focus;
+  }
+}
+
+%label__defaults {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600;
+}
+
+label {
+  @extend %label__defaults;
+}
+
+legend {
+  @extend %label__defaults;
+}
+
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+
+label>.label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal;
+}

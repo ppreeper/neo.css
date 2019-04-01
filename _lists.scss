@@ -1,0 +1,42 @@
+%list__padding {
+    margin:0;
+    padding:0;
+}
+
+%list__embedded--style {
+    margin:0;
+    padding:0;
+    margin-left: 3em;
+    // margin: 1.5em 0 1.5em 3em;
+    font-size: 90%
+}
+
+ul {
+    @extend %list__padding;
+    list-style: circle inside;
+
+    ul {
+        @extend %list__embedded--style;
+    }
+
+    ol {
+        @extend %list__embedded--style;
+    }
+}
+
+ol {
+    @extend %list__padding;
+    list-style: decimal inside;
+
+    ol {
+        @extend %list__embedded--style;
+    }
+
+    ul {
+        @extend %list__embedded--style;
+    }
+}
+
+li {
+    margin-bottom: 1rem;
+}
