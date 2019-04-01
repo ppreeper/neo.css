@@ -1,16 +1,37 @@
-th,
-td {
+%table__th-td--defaults {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #E1E1E1;
 }
 
-th:first-child,
-td:first-child {
+%table__th-td--first-child {
     padding-left: 0;
 }
 
-th:last-child,
-td:last-child {
+%table__th-td--last-child {
     padding-right: 0;
+}
+
+th {
+    @extend %table__th-td--defaults;
+
+    &:first-child {
+        @extend %table__th-td--first-child;
+    }
+
+    &:last-child {
+        @extend %table__th-td--last-child;
+    }
+}
+
+td {
+    @extend %table__th-td--defaults;
+
+    &:first-child {
+        @extend %table__th-td--first-child;
+    }
+
+    &:last-child {
+        @extend %table__th-td--last-child;
+    }
 }
