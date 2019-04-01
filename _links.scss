@@ -1,7 +1,13 @@
-a {
-    color: #1EAEDB;
+%link__hover--outline {
+    outline: 0;
+}
 
+a {
     &:hover {
-        color: #0FA0CE;
+        @extend %link__hover--outline;
+    }
+
+    &:focus {
+        @extend %link__hover--outline;
     }
 }
