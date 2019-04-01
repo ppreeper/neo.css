@@ -1,0 +1,34 @@
+%form__input--defaults {
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+.pure-form {
+    select{@extend %form__input--defaults;}
+    textarea{@extend %form__input--defaults;}
+        input {
+        &[type="text"]{@extend %form__input--defaults;}
+&[type="password"]{@extend %form__input--defaults;}
+&[type="email"]{@extend %form__input--defaults;}
+&[type="url"]{@extend %form__input--defaults;}
+&[type="date"]{@extend %form__input--defaults;}
+&[type="month"]{@extend %form__input--defaults;}
+&[type="time"]{@extend %form__input--defaults;}
+&[type="datetime"]{@extend %form__input--defaults;}
+&[type="datetime-local"]{@extend %form__input--defaults;}
+&[type="week"]{@extend %form__input--defaults;}
+&[type="number"]{@extend %form__input--defaults;}
+&[type="search"]{@extend %form__input--defaults;}
+&[type="tel"]{@extend %form__input--defaults;}
+&[type="color"]{@extend %form__input--defaults; padding: 0.2em 0.5em;}
+
+        &:not([type]) {
+            @extend %form__input--defaults;
+        }
+    }
+}

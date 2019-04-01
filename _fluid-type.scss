@@ -1,0 +1,123 @@
+// media query areas
+$screen--phone-only: 37.5em; //600px
+$screen--tablet-portrait-up: 56.25em; //900px
+$screen--tablet-landscape-up: 75em; //1200px
+$screen--desktop-up: 112.5em; //1800px
+
+@mixin for-phone-only {
+    @media (max-width: $screen--phone-only) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: $screen--phone-only) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: $screen--tablet-portrait-up) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media (min-width: $screen--tablet-landscape-up) {
+        @content;
+    }
+}
+
+@mixin for-big-desktop-up {
+    @media (min-width: $screen--desktop-up) {
+        @content;
+    }
+}
+
+// usage
+// .my-box {
+//   padding: 10px;
+
+//   @include for-desktop-up {
+//     padding: 20px;
+//   }
+// }
+
+// fluid typography mixin
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+        & {
+            font-size: $min-font-size;
+
+            @media screen and (min-width: $min-vw) {
+                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+            }
+
+            @media screen and (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
+    }
+}
+
+// fluid typography with scaling fonts
+$min_font: 1em;
+$max_font: 1.125em;
+$min_width: $screen--phone-only;
+$max_width: $screen--tablet-landscape-up;
+
+//Modular Scale Headers
+$mod_1: 1.067; //Minor Second
+$mod_2: 1.125; //Major Second
+$mod_h1_min: $min_font*$mod_1*$mod_1*$mod_1*$mod_1*$mod_1;
+$mod_h2_min: $min_font*$mod_1*$mod_1*$mod_1*$mod_1;
+$mod_h3_min: $min_font*$mod_1*$mod_1*$mod_1;
+$mod_h4_min: $min_font*$mod_1*$mod_1;
+$mod_h5_min: $min_font*$mod_1;
+$mod_h1_max: $max_font*$mod_2*$mod_2*$mod_2*$mod_2*$mod_2;
+$mod_h2_max: $max_font*$mod_2*$mod_2*$mod_2*$mod_2;
+$mod_h3_max: $max_font*$mod_2*$mod_2*$mod_2;
+$mod_h4_max: $max_font*$mod_2*$mod_2;
+$mod_h5_max: $max_font*$mod_2;
+
+%fluid-type__html-body {
+    @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+html {
+    @extend %fluid-type__html-body;
+    overflow-x: hidden;
+}
+
+body {
+    @extend %fluid-type__html-body;
+}
+
+h1 {
+    @include fluid-type($min_width, $max_width, $mod_h1_min, $mod_h1_max)
+}
+
+h2 {
+    @include fluid-type($min_width, $max_width, $mod_h2_min, $mod_h2_max)
+}
+
+h3 {
+    @include fluid-type($min_width, $max_width, $mod_h3_min, $mod_h3_max)
+}
+
+h4 {
+    @include fluid-type($min_width, $max_width, $mod_h4_min, $mod_h4_max)
+}
+
+h5 {
+    @include fluid-type($min_width, $max_width, $mod_h5_min, $mod_h5_max)
+}
