@@ -1,0 +1,35 @@
+// media query areas
+$screen--phone-only: 37.5em; //600px
+$screen--tablet-portrait-up: 56.25em; //900px
+$screen--tablet-landscape-up: 75em; //1200px
+$screen--desktop-up: 112.5em; //1800px
+
+@mixin for-phone-only {
+    @media (max-width: $screen--phone-only) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: $screen--phone-only) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: $screen--tablet-portrait-up) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media (min-width: $screen--tablet-landscape-up) {
+        @content;
+    }
+}
+
+@mixin for-big-desktop-up {
+    @media (min-width: $screen--desktop-up) {
+        @content;
+    }
+}

@@ -1,2 +1,2 @@
 #!/bin/bash
-sassc web.scss web.css
+sass --no-source-map --watch neo.scss neo.css

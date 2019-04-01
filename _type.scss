@@ -1,0 +1,132 @@
+// extends
+%font-family--sans-serif {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        sans-serif;
+}
+
+%font-family--serif {
+    font-family:
+        serif;
+}
+
+%font-family--mono {
+    font-family:
+        monospace, monospace;
+}
+
+// mixins
+
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+        & {
+            font-size: $min-font-size;
+            margin: $min-font-size/10 0em;
+
+            @media screen and (min-width: $min-vw) {
+                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+            }
+
+            @media screen and (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
+    }
+}
+
+// screen size
+$screen--phone-only: 37.5em; //600px
+$screen--tablet-portrait-up: 56.25em; //900px
+$screen--tablet-landscape-up: 75em; //1200px
+$screen--desktop-up: 112.5em; //1800px
+
+// fluid typography with scaling fonts
+$min_font: 1em;
+$max_font: 1.125em;
+$min_width: $screen--phone-only;
+$max_width: $screen--tablet-landscape-up;
+
+//Modular Scale Headers
+$mod_1: 1.067; //Minor Second
+$mod_2: 1.125; //Major Second
+$mod_h1_min: $min_font*$mod_1*$mod_1*$mod_1*$mod_1*$mod_1;
+$mod_h2_min: $min_font*$mod_1*$mod_1*$mod_1*$mod_1;
+$mod_h3_min: $min_font*$mod_1*$mod_1*$mod_1;
+$mod_h4_min: $min_font*$mod_1*$mod_1;
+$mod_h5_min: $min_font*$mod_1;
+$mod_h6_min: $min_font;
+$mod_h1_max: $max_font*$mod_2*$mod_2*$mod_2*$mod_2*$mod_2;
+$mod_h2_max: $max_font*$mod_2*$mod_2*$mod_2*$mod_2;
+$mod_h3_max: $max_font*$mod_2*$mod_2*$mod_2;
+$mod_h4_max: $max_font*$mod_2*$mod_2;
+$mod_h5_max: $max_font*$mod_2;
+$mod_h6_max: $max_font;
+
+%fluid-type__html-body {
+    @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+html {
+    @extend %fluid-type__html-body;
+    // overflow-x: hidden;
+}
+
+body {
+    @extend %fluid-type__html-body;
+}
+
+h1 {
+    @include fluid-type($min_width, $max_width, $mod_h1_min, $mod_h1_max)
+}
+
+h2 {
+    @include fluid-type($min_width, $max_width, $mod_h2_min, $mod_h2_max)
+}
+
+h3 {
+    @include fluid-type($min_width, $max_width, $mod_h3_min, $mod_h3_max)
+}
+
+h4 {
+    @include fluid-type($min_width, $max_width, $mod_h4_min, $mod_h4_max)
+}
+
+h5 {
+    @include fluid-type($min_width, $max_width, $mod_h5_min, $mod_h5_max)
+}
+
+h6 {
+    @include fluid-type($min_width, $max_width, $mod_h6_min, $mod_h6_max)
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    // margin:0.12em 0.12em;
+    font-weight: 300;
+}
+
+p {
+    margin-top: 0;
+}
